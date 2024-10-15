@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/datn/static/css/main.b72e1dd3.css",
+    "main.js": "/datn/static/js/main.66867ecb.js",
+    "static/js/919.302ed9b4.chunk.js": "/datn/static/js/919.302ed9b4.chunk.js",
+    "static/media/logo.svg": "/datn/static/media/logo.0b083c5d6dd32832fb26aace73b100be.svg",
+    "static/media/helper.svg": "/datn/static/media/helper.1047fbec14813371e94da12df773b3b5.svg",
+    "static/media/overview.svg": "/datn/static/media/overview.9a962273c86d105da5d7359a0de56e19.svg",
+    "static/media/my-course.svg": "/datn/static/media/my-course.97143c120899f53a8be457fc5fe32263.svg",
+    "static/media/setting.svg": "/datn/static/media/setting.bd8717da90abd701d4c1039e0dd8d9b1.svg",
+    "static/media/delete.svg": "/datn/static/media/delete.c0f1d11e49bb59afaf2a2000cb6388db.svg",
+    "static/media/menu.svg": "/datn/static/media/menu.d97ad0ebd76b9a29520ef6bac13864a2.svg",
+    "static/media/uploadIconSize32.svg": "/datn/static/media/uploadIconSize32.9c81103b7a905cc6047a97b7c0d001b6.svg",
+    "index.html": "/datn/index.html",
+    "main.b72e1dd3.css.map": "/datn/static/css/main.b72e1dd3.css.map",
+    "main.66867ecb.js.map": "/datn/static/js/main.66867ecb.js.map",
+    "919.302ed9b4.chunk.js.map": "/datn/static/js/919.302ed9b4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b72e1dd3.css",
+    "static/js/main.66867ecb.js"
+  ]
+}
