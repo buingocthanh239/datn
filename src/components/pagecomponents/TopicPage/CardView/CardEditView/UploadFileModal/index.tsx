@@ -100,7 +100,6 @@ const UploadFileModal = (props: {
         } else {
           paragraphs = await splitParagraphs(xml, zip, relationShipElements);
           const questions = handleSplitQuestionFileWords(type)(paragraphs);
-          console.log(questions);
           const formatNewQuestions = questions.map((q) => convertQuestionToFormatQuestionNN24h(q));
           const newQuestions = detectCorrectAnswerInChoiceQuestion(formatNewQuestions);
           const questionHtml = newQuestions.map((question) => convertQuestionToHTML(question));

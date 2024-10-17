@@ -81,7 +81,16 @@ export async function getComponentInParagraph(paragraphsElement, zip, relationSh
     const runNode = runComponent[i];
     // run la tag text
     const textComponent = runNode.getElementsByTagName('w:t');
+    const brComponent = runNode.getElementsByTagName('w:br');
     const tabComponent = runNode.getElementsByTagName('w:tab');
+    if(!!brComponent && brComponent.length > 0) {
+     for(let j = 0; j < brComponent.length; j++) {
+      paragraph.push({
+        content: "<br>",
+          type: NORMAL_TEXT
+      })
+    }
+    }
     if (textComponent.length) {
       const textValue = textComponent[0].textContent;
       if (textValue) {
