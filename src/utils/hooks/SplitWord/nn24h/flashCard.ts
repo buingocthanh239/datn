@@ -21,6 +21,7 @@ const convertRowComponentToHtml = (component: ParagraphComponent[]) => {
 export function coverFlashCard(paragraphs: IParagraph[]) {
   const lengthParagraphs = paragraphs.length;
   const questions = [];
+  let startVocal = false, startStruct = false;
   let vocalIndex = 0,
     typeIndex = 0,
     meanIndex = 0,
@@ -44,6 +45,8 @@ export function coverFlashCard(paragraphs: IParagraph[]) {
     const { text } = firstData?.[0];
     if (VOCAL_PATTERN.test(text.trim())) {
       if (table.length > 1) {
+        startVocal = true;
+        startStruct = false;
         const tableHeader = table[1];
         if (tableHeader && tableHeader.length) {
           for (let j = 0; j < tableHeader.length; j++) {
@@ -90,6 +93,8 @@ export function coverFlashCard(paragraphs: IParagraph[]) {
       }
     } else if (STRUCT_PATTERN.test(text.trim())) {
       if (table.length > 1) {
+        startStruct = true;
+        startVocal = true;
         const tableHeader = table[1];
         if (tableHeader && tableHeader.length) {
           for (let j = 0; j < tableHeader.length; j++) {
@@ -122,6 +127,57 @@ export function coverFlashCard(paragraphs: IParagraph[]) {
             );
             questions.push(item.filter((i) => !!i));
           }
+        }
+      }
+    } else if (startVocal === true) {
+      if(table.length > 0 && table[0]?.length === 6) {
+        for (let j = 0; j < table.length; j++) {
+          const row = table[j];
+          const item = [];
+          item.push(
+            row?.[vocalIndex]?.[0]?.text
+              ? `#.${convertRowComponentToHtml(row?.[vocalIndex]?.[0]?.component)}`
+              : undefined
+          );
+          item.push(
+            row?.[typeIndex]?.[0]?.text || row?.[transcriptionIndex]?.[0]?.text
+              ? `$.${convertRowComponentToHtml(row?.[typeIndex]?.[0]?.component)}<br>${convertRowComponentToHtml(row?.[transcriptionIndex]?.[0]?.component)}`
+              : undefined
+          );
+          item.push(
+            row?.[meanIndex]?.[0]?.text
+              ? `*.${convertRowComponentToHtml(row?.[meanIndex]?.[0]?.component)}`
+              : undefined
+          );
+          item.push(
+            row?.[exampleIndex]?.[0]?.text
+              ? `$b.${convertRowComponentToHtml(row?.[exampleIndex]?.[0]?.component)}`
+              : undefined
+          );
+          questions.push(item.filter((i) => !!i));
+        }
+      } 
+    } else if (startStruct === true) {
+      if(table.length > 0 && table[0]?.length === 4) {
+        for (let j = 0; j < table.length; j++) {
+          const row = table[j];
+          const item = [];
+          item.push(
+            row?.[structIndex]?.[0]?.text
+              ? `#.${convertRowComponentToHtml(row?.[structIndex]?.[0]?.component)}`
+              : undefined
+          );
+          item.push(
+            row?.[meanStructIndex]?.[0]?.text
+              ? `*.${convertRowComponentToHtml(row?.[meanStructIndex]?.[0]?.component)}`
+              : undefined
+          );
+          item.push(
+            row?.[exampleStructIndex]?.[0]?.text
+              ? `$b.${convertRowComponentToHtml(row?.[exampleStructIndex]?.[0]?.component)}`
+              : undefined
+          );
+          questions.push(item.filter((i) => !!i));
         }
       }
     }
